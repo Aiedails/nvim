@@ -22,9 +22,11 @@ g.vsnip_snippet_dir = vim.fn.expand("~/.config/nvim/vsnip")
 g.wildfire_objects = { "i'", 'i"', "i)", "i]", "i}", "ip", "it", "i`" }
 
 -- for vim-markdown
+g.tex_conceal = ""
 g.vim_markdown_conceal_code_blocks = 0
 g.vim_markdown_strikethrough = 1
-g.vim_markdown_math = 1
+g.vim_markdown_conceal = 0
+g.vim_markdown_math = 0
 
 g.rooter_manual_only = 1
 g.rooter_change_directory_for_non_project_files = "current"
@@ -69,21 +71,24 @@ end
 
 -- visual multi mappings
 -- clean the keymap `u` and initialize the new keymap set
-require("mappings.utils").map("", "u", "<nop>")
+-- M: change to ;u instead
+require("mappings.utils").map("", ";u", "<nop>")
 g.VM_default_mappings = 0
 
 -- u is map to <C-z>, let us reuse it here
+-- NO! give my u back!
+-- M: change all u to ;u
 g.VM_maps = {
-  ["Find Under"] = "un",
-  ["Find Subword Under"] = "un",
-  ["Select Cursor Down"] = "uj",
-  ["Select Cursor Up"] = "uk",
-  ["Undo"] = "<C-z>",
+  ["Find Under"] = ";un",
+  ["Find Subword Under"] = ";un",
+  ["Select Cursor Down"] = ";uj",
+  ["Select Cursor Up"] = ";uk",
+  -- ["Undo"] = "<C-z>",
   ["Redo"] = "<C-r>",
-  ["Start Regex Search"] = "ux",
-  ["Visual Regex"] = "ux",
-  ["Visual All"] = "uA",
-  ["Visual Add"] = "ua",
-  ["Visual Find"] = "uf",
-  ["Visual Cursors"] = "uc",
+  ["Start Regex Search"] = ";ux",
+  ["Visual Regex"] = ";ux",
+  ["Visual All"] = ";uA",
+  ["Visual Add"] = ";ua",
+  ["Visual Find"] = ";uf",
+  ["Visual Cursors"] = ";uc",
 }

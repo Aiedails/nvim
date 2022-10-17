@@ -84,8 +84,13 @@ nmap("<C-c>", ":BufferLinePickClose<CR>") -- close tab
 
 -- move between tabs
 nmap(".", [[<Cmd>BufferLineCycleNext<CR>]])
-nmap(",", [[<Cmd>BufferLineCyclePrev<CR>]])
-nmap(";p", [[<CMD>:BufferLinePick<CR>]])
+-- nmap(",", [[<Cmd>BufferLineCyclePrev<CR>]])
+-- change "," to highlight current word
+nmap(";b", [[<CMD>:BufferLinePick<CR>]])
+nmap("<LEADER>1", [[<Cmd>BufferLineGoToBuffer 1<CR>]])
+nmap("<LEADER>2", [[<Cmd>BufferLineGoToBuffer 2<CR>]])
+nmap("<LEADER>3", [[<Cmd>BufferLineGoToBuffer 3<CR>]])
+nmap("<LEADER>4", [[<Cmd>BufferLineGoToBuffer 4<CR>]])
 
 -- move tabs
 nmap("<M-n>", [[<CMD>BufferLineMoveNext<CR>]])

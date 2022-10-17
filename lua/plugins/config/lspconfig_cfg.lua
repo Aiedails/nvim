@@ -52,23 +52,44 @@ local on_attach = function(client, bufnr)
     bmap("n", "<leader>ra", "<cmd>RustHoverAction<CR>", opts)
   end
 
-  -- Set some keybinds conditional on server capabilities
-  -- 0.8.0
-  if vim.fn.has("nvim-0.8.0") then
-    if client.server_capabilities.documentFormattingProvider then
-      bmap("n", "gf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
-    elseif client.server_capabilities.documentRangeFormattingProvider then
-      bmap("x", "gf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+  -- M: add temp formatting function for **PYTHON ONLY** here
+  function Formatting_temp()
+    vim.api.nvim_command(':w') -- save first
+    local filetype = vim.bo.filetype
+
+    if (filetype == 'python') then
+      local filename = vim.api.nvim_buf_get_name(0)
+      local handle = io.popen("autopep8 --in-place "..filename)
+      local result = handle:read("*a")
+      handle:close()
+      print(result)
+
+    elseif (filetype == 'cpp' or filetype == 'c') then
+      vim.api.nvim_command(":ClangFormat")
     end
 
-    -- 0.6.0 - 0.7.0
-  else
-    if client.resolved_capabilities.document_formatting then
-      bmap("n", "gf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    elseif client.resolved_capabilities.document_range_formatting then
-      bmap("x", "gf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-    end
+    vim.api.nvim_command(':e') -- reload buffer
   end
+
+  bmap("n", "gf", "<cmd>lua Formatting_temp()<CR>", opts)
+
+  -- Set some keybinds conditional on server capabilities
+  -- 0.8.0
+  -- if vim.fn.has("nvim-0.8.0") then
+  --   if client.server_capabilities.documentFormattingProvider then
+  --     bmap("n", "gf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
+  --   elseif client.server_capabilities.documentRangeFormattingProvider then
+  --     bmap("x", "gf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+  --   end
+
+  --   -- 0.6.0 - 0.7.0
+  -- else
+  --   if client.resolved_capabilities.document_formatting then
+  --     bmap("n", "gf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  --   elseif client.resolved_capabilities.document_range_formatting then
+  --     bmap("x", "gf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+  --   end
+  -- end
 end
 
 -- Gets a new ClientCapabilities object describing the LSP client

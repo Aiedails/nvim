@@ -6,15 +6,19 @@ local d = utils.new_desc
 
 vim.g.mapleader = " "
 
+
 -- load plugin's keymapping
 require("mappings.other")
 
--- quicker motion
-nmap("J", "5j", d("Jump 5 lines down"))
-xmap("J", "5j", d("Jump 5 lines down"))
+-- quicker motion 
+--
+-- M: use J as normal
+-- nmap("J", "5j", d("Jump 5 lines down"))
+-- xmap("J", "5j", d("Jump 5 lines down"))
 
 nmap("K", "5k", d("Jump 5 lines up"))
 xmap("K", "5k", d("Jump 5 lines up"))
+
 
 map("i", "<C-h>", "<Home>")
 map("i", "<C-e>", "<End>")
@@ -32,6 +36,7 @@ nmap("B", "5b", d("Jump 5 word backward"))
 
 -- no more background key
 nmap("<C-z>", "u", d("Revert change"))
+-- nmap("uu", "u", d("Revert change"))
 
 -- move block easily
 nmap("<", "<<", d("Decrease indent"))
@@ -71,3 +76,9 @@ nmap("<C-S-left>", ":vertical resize+5<CR>", d("Extend the right boundary of the
 
 -- center editing line
 map("i", "<C-c>", "<ESC>zzi", d("Place the current line to the middle of the screen"))
+
+-- map ;o to toggle fold
+nmap(";o", "za", d("toggle fold. <=> `za`"))
+
+-- map , to toggle fold
+nmap(",", "*", d("highlight current word"))
