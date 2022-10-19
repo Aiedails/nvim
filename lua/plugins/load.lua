@@ -697,6 +697,14 @@ local coding_enhance = {
       require("plugins").load_cfg("dap_cfg")
     end,
   },
+  {
+    "mfussenegger/nvim-dap-python", -- dap-python
+    module = "dap-python",
+    ft = 'python',
+    config = function()
+      require("plugins").load_cfg("dap_python_cfg")
+    end,
+  },
 
   -- UI for nvim-dap
   {

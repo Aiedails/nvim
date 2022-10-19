@@ -5,11 +5,16 @@ dap.adapters.lldb = {
   command = "/usr/bin/lldb-vscode", -- adjust as needed
   name = "lldb",
 }
+dap.adapters.cppdbg = {
+  id = 'cppdbg',
+  type = 'executable',
+  command = '/home/tairitsu/.config/nvim/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+}
 
 dap.configurations.cpp = {
   {
     name = "Launch",
-    type = "lldb",
+    type = "cppdbg",
     request = "launch",
     program = function()
       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
@@ -20,6 +25,7 @@ dap.configurations.cpp = {
     runInTerminal = true,
   },
 }
+
 
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp

@@ -2,5 +2,6 @@ tmp
 autoload
 plugged
 plugin
+cpptools
 
 lua/custom.lua
