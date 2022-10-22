@@ -22,11 +22,9 @@ g.vsnip_snippet_dir = vim.fn.expand("~/.config/nvim/vsnip")
 g.wildfire_objects = { "i'", 'i"', "i)", "i]", "i}", "ip", "it", "i`" }
 
 -- for vim-markdown
-g.tex_conceal = ""
 g.vim_markdown_conceal_code_blocks = 0
 g.vim_markdown_strikethrough = 1
-g.vim_markdown_conceal = 0
-g.vim_markdown_math = 0
+g.vim_markdown_math = 1
 
 g.rooter_manual_only = 1
 g.rooter_change_directory_for_non_project_files = "current"
