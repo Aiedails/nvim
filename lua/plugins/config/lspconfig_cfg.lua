@@ -118,6 +118,8 @@ local function setup_capabilities()
       },
     },
   }
+  -- M: to avoid offset worning
+  capabilities.offsetEncoding = "utf-8"
 
   return capabilities
 end

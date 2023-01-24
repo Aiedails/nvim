@@ -80,5 +80,9 @@ map("i", "<C-c>", "<ESC>zzi", d("Place the current line to the middle of the scr
 -- map ;o to toggle fold
 nmap(";o", "za", d("toggle fold. <=> `za`"))
 
--- map , to toggle fold
-nmap(",", "*", d("highlight current word"))
+-- M: map , to toggle fold
+nmap(",", "*N", d("highlight current word"))
+nmap("#", "#N", d("highlight current word"))
+
+-- M: search in visual mode
+xmap("//", "y/\\V<C-R>=escape(@\",'/\\')<CR><CR>", d("highlight current word"))

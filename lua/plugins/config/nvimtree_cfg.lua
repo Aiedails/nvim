@@ -114,6 +114,7 @@ require("nvim-tree").setup({
         { key = "P", cb = tree_cb("parent_node") },
         { key = "<BS>", cb = tree_cb("close_node") },
         { key = "<S-CR>", cb = tree_cb("close_node") },
+        -- M: release the <Tab> for Copilot
         { key = "<Tab>", cb = tree_cb("preview") },
         { key = "K", cb = tree_cb("first_sibling") },
         { key = "J", cb = tree_cb("last_sibling") },
